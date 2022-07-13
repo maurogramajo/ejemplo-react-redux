@@ -1,0 +1,9 @@
+.question-list-item {
+    border: 2px solid;
+    border-color: dimgrey;
+    padding: 10px;
+    list-style: none;
+    background-color: darkgray;
+    margin: inherit;
+  cursor:pointer;
+}
