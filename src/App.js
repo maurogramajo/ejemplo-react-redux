@@ -11,6 +11,7 @@ import { questionReducer } from './reducers/questionReducer';
 const initialState = {
   questions: questions,
   currentQ: 0,
+  puntos: 0,
 }
 
 function App() {
@@ -23,11 +24,15 @@ function App() {
     dispatch({type: TYPES.RESET});
   }
 
+  function answerSelected(id) {
+    dispatch({type: TYPES.ANSWER_SELECTED, payload: id});
+    dispatch({type: TYPES.NEXT_QUESTION});
+  }
+
   return (
     //<Provider store={store}>
     <div>
-      <button onClick={increment}>NEXT QUESTION</button>
-      <QuestionBox question = {state.questions[state.currentQ]} />
+      <QuestionBox question = {state.questions[state.currentQ]} onAnswerSelected={answerSelected} points={state.puntos} />
       <button onClick={reset}>RESET</button>
     </div>
     //</Provider>

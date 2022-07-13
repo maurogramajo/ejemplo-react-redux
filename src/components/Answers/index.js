@@ -6,7 +6,7 @@ import './styles.css';
 function Answers({
   answers,
   onAnswerSelected,
-  isActived
+  //isActived
 }) {
   return (
     <ul>
@@ -14,10 +14,7 @@ function Answers({
         <li onClick={() => onAnswerSelected(ans.id)}
             className = "question-list-item"
             key = {ans.id}
-            style={{
-            backgroundColor: isActived ? 'salmon' : '',
-            color: isActived ? 'white' : '',
-            }}
+
         >
           {ans.label}
         </li>
@@ -27,3 +24,10 @@ function Answers({
 }
 
 export default Answers;
+
+/*
+            style={{
+            backgroundColor: isActived ? 'salmon' : '',
+            color: isActived ? 'white' : '',
+            }}
+            */

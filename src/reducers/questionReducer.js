@@ -8,7 +8,13 @@ export function questionReducer(state, action) {
       else
         return state;
     case TYPES.RESET:
-      return {...state, currentQ: 0};
+      return {...state, currentQ: 0, puntos: 0};
+    case TYPES.ANSWER_SELECTED:
+      //console.info(state.questions[state.currentQ].answers[action.payload].correct);
+      if(state.questions[state.currentQ].answers[action.payload].correct) {
+        return {...state, puntos: state.puntos + 10};
+      }
+      return state;
     default:
       return state;
   }
