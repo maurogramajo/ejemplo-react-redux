@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useReducer} from 'react';
+import questions from './mocks/questions';
+// redux
+import { Provider } from 'react-redux';
+import store from './store/store';
+
+const initialState = {
+  questions: questions,
+  currentQ: 0,
+}
+
+
 
 function App() {
+  const [state, dispatch] = useReducer(store, initialState);
+  function increment() {
+    dispatch({type: 'NEXT_QUESTION'});
+  }
+
+  function decrement() {
+    dispatch({type: 'DECREMENT'});
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div>
+        <button onClick={decrement}>-</button>
+
+        <button onClick={increment}>+</button>
+        <span>{state.questions[state.currentQ].title}</span>
+      </div>
+    </Provider>
   );
 }
 
